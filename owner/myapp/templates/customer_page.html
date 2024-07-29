@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+
+{% block title %}Page 1{% endblock %}
+
+{% block content %}
+<style>
+    /* Styling for demonstration purposes */
+    .table-container {
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .actions {
+        white-space: nowrap;
+    }
+    .actions a {
+        margin-right: 5px;
+        text-decoration: none;
+        color:white;
+    }
+    .actions a:hover {
+        text-decoration: underline;
+    }
+    .add-customer-btn {
+        margin-top: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .search-form {
+        margin-bottom: 10px;
+    }
+    .search-form input[type="text"] {
+        padding: 8px;
+        font-size: 14px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+    }
+</style>
+
+<!-- Search Form -->
+<form method="get" action="{% url 'customer_page' %}" class="search-form">
+    <input type="text" name="q" placeholder="Search by name" value="{{ query }}">
+    <button type="submit" class="add-customer-btn">Search</button>
+</form>
+
+<!-- Add Customer Button -->
+<a href="{% url 'customer_create' %}"><button class="add-customer-btn">+ Add Customer</button></a>
+
+<!-- Customer Table -->
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for customer in customers %}
+            <tr>
+                <td>{{ customer.name }}</td>
+                <td>{{ customer.phone_number }}</td>
+                <td class="actions">
+                    <a href="{% url 'customer_details' customer.id %}" class="add-customer-btn">Details</a>
+                    <a href="{% url 'customer_update' customer.id %}" class="add-customer-btn">Edit</a>
+                    <a href="{% url 'customer_delete' customer.id %}" class="add-customer-btn">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="3">No customers found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+<div style="height: 1500px;"></div> <!-- This is just to add some scrollable content for demonstration -->
+{% endblock %}

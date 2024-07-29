@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Product Details{% endblock %}
+
+{% block content %}
+<style>
+    .edit-form {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="number"] {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    .btn-submit {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .btn-submit:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<h1>Edit Product Details</h1>
+<form method="post" action="{% url 'successfully_updated_product' product.id %}" class="edit-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_name">Product Name:</label>
+        <input type="text" id="id_name" name="name" value="{{product.name}}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_price">Price:</label>
+        <input type="number" id="id_price" name="price" value="{{product.price}}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_selling_no">Selling Number:</label>
+        <input type="number" id="id_selling_no" name="selling_no" value="{{product.selling_no}}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_quantity">Quantity:</label>
+        <input type="number" id="id_quantity" name="quantity" value="{{product.quantity}}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_model">Model or Brand:</label>
+        <input type="text" id="id_model" name="model" value="{{product.model_or_brand}}">
+    </div>
+    <button type="submit" class="btn-submit">Submit</button>
+</form>
+
+{% endblock %}

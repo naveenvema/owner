@@ -1,0 +1,91 @@
+
+{% extends "base.html" %}
+
+{% block title %}Page 4{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 20px auto;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        font-size: 16px;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    .center {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #4CAF50;
+        color: white;
+    }
+    .fixed-column {
+        width: 150px; /* Set the desired width */
+        height: 50px; /* Set the desired height */
+        background-color: #e0f7fa;
+        text-align: center;
+        font-weight: bold;
+    }
+    .variable-column {
+        width: auto; /* Width changes according to content */
+        height: auto; /* Height changes according to content */
+    }
+</style>
+
+<table>
+    
+    <tr>
+        <td colspan="2" class="center">Product Details</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Name</td>
+        <td class="variable-column">{{products.name}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">price</td>
+        <td class="variable-column">{{products.price}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Quantity</td>
+        <td class="variable-column">{{products.quantity}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">No of sellling items</td>
+        <td class="variable-column">{{products.selling_no}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">About</td>
+        <td class="variable-column">{{products.about}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Model or Brand</td>
+        <td class="variable-column">{{products.model_or_brand}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Category</td>
+        <td class="variable-column">{{products.category}}</td>
+    </tr>
+</table>
+
+
+
+{% endblock %}

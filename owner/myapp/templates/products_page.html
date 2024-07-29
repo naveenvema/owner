@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}Page 1{% endblock %}
+
+{% block content %}
+<style>
+    /* Styling for demonstration purposes */
+    .table-container {
+        margin-top: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow-x: auto;
+    }
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+    .actions {
+        white-space: nowrap;
+    }
+    .actions a {
+        margin-right: 5px;
+        text-decoration: none;
+        color:white;
+    }
+    .actions a:hover {
+        text-decoration: underline;
+    }
+    .add-customer-btn {
+        margin-top: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+
+
+<a href="{% url 'product_create' %}"><button class="add-customer-btn">+Add product </button></a>
+
+<div class="table-container">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Example rows (replace with actual data from your backend) -->
+            {% for product in products %}
+            <tr>
+                <td>{{product.name}}</td>
+                <td>{{product.price}}</td>
+                <td class="actions">
+                    <a href="{% url 'product_details' product.id %}" class="add-customer-btn">Details</a>
+                    <a href="{% url 'product_update' product.id %}" class="add-customer-btn">Edit</a>
+                    <a href="{% url 'product_delete' product.id %}" class="add-customer-btn">Delete</a>
+                </td>
+            {% endfor %}
+            </tr>
+            
+        </tbody>
+    </table>
+</div>
+
+<div style="height: 1500px;"></div> <!-- This is just to add some scrollable content for demonstration -->
+{% endblock %}

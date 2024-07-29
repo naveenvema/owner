@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>{% block title %}My Site{% endblock %}</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            padding: 0.5rem;
+            text-align: center;
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        .navbar a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .container {
+            display: flex;
+            margin-top: 60px; /* Height of the navbar */
+        }
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 1rem;
+            box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 60px; /* Height of the navbar */
+            bottom: 0;
+            overflow-y: auto;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px 0;
+        }
+        .sidebar ul li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+        .sidebar ul li a:hover {
+            background-color: #ddd;
+        }
+        .content {
+            margin-left: 200px; /* Width of the sidebar */
+            padding: 2rem;
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h2>Easy to Digitalize</h2>
+        <!--<a href="{% url 'products_page' %}">Home</a>
+        <a href="{% url 'customer_page' %}">About</a>
+        <a href="{% url 'Category_page' %}">Services</a>
+        <a href="{% url 'Transactions' %}">Contact</a>-->
+    </div>
+    <div class="container">
+        <div class="sidebar">
+            <!-- Sidebar content here -->
+            <ul>
+                <li><a href="{% url 'products_page' %}">Products</a></li>
+                <li><a href="{% url 'customer_page' %}">Customers</a></li>
+                <li><a href="{% url 'Category_page' %}">Categories</a></li>
+                <li><a href="{% url 'Transactions' %}">Transactions</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            {% block content %}
+            <!-- Page-specific content will go here -->
+            {% endblock %}
+        </div>
+    </div>
+</body>
+</html>

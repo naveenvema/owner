@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Edit Customer Details{% endblock %}
+
+{% block content %}
+<style>
+    .edit-form {
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        background-color: #f9f9f9;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    label {
+        font-weight: bold;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    select {
+        width: 100%;
+        padding: 10px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+    select {
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath fill='%23777' d='M6 5.3l-5-5L0 .7l6 6 6-6-.9-.9z'/%3E%3C/svg%3E") no-repeat;
+        background-position: calc(100% - 10px) center;
+        background-size: 12px;
+        padding-right: 30px;
+    }
+    .btn-submit {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .btn-submit:hover {
+        background-color: #45a049;
+    }
+</style>
+
+<h1>Edit Your Details</h1>
+<form method="post" action="{% url 'successfully_updated' customer.id %}" class="edit-form">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="id_name">Name:</label>
+        <input type="text" id="id_name" name="name" value="{{customer.name}}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_email">Email:</label>
+        <input type="email" id="id_email" name="email" value="{{customer.email}}" required>
+    </div>
+    <div class="form-group">
+        <label for="id_phone_number">Phone Number:</label>
+        <input type="tel" id="id_phone_number" name="phone_number" value="{{customer.phone_number}}" maxlength="10" required>
+    </div>
+    <div class="form-group">
+        <label for="id_gender">Gender:</label>
+        <select id="id_gender" name="gender" required>
+            <option value="M" {% if customer.gender == 'M' %}selected{% endif %}>Male</option>
+            <option value="F" {% if customer.gender == 'F' %}selected{% endif %}>Female</option>
+            <option value="O" {% if customer.gender == 'O' %}selected{% endif %}>Other</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="id_pan_number">PAN Number:</label>
+        <input type="text" id="id_pan_number" name="pan_number" value="{{customer.pan_number}}" maxlength="10">
+    </div>
+    <button type="submit" class="btn-submit">Submit</button>
+</form>
+
+{% endblock %}

@@ -1,0 +1,107 @@
+
+{% extends "base.html" %}
+
+{% block title %}Page 4{% endblock %}
+
+{% block content %}
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        margin: 20px auto;
+    }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 12px;
+        text-align: left;
+        font-size: 16px;
+    }
+    th {
+        background-color: #4CAF50;
+        color: white;
+        font-weight: bold;
+    }
+    tr:nth-child(even) {
+        background-color: #f9f9f9;
+    }
+    tr:hover {
+        background-color: #f1f1f1;
+    }
+    .center {
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: #4CAF50;
+        color: white;
+    }
+    .fixed-column {
+        width: 150px; /* Set the desired width */
+        height: 50px; /* Set the desired height */
+        background-color: #e0f7fa;
+        text-align: center;
+        font-weight: bold;
+    }
+    .variable-column {
+        width: auto; /* Width changes according to content */
+        height: auto; /* Height changes according to content */
+    }
+    .add-customer-btn {
+        margin-top: 10px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+</style>
+
+<table>
+    <a href="{% url 'Add_product_to_the_customer' customer.id %}"><button class="add-customer-btn">Add One More Product</button></a>
+    <tr>
+        <td colspan="2" class="center">Customer Details</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Name</td>
+        <td class="variable-column">{{customer.name}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Email</td>
+        <td class="variable-column">{{customer.email}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Phone Number</td>
+        <td class="variable-column">{{customer.phone_number}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Gender</td>
+        <td class="variable-column">{{customer.gender}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Pan NUmber</td>
+        <td class="variable-column">{{customer.pan_number}}</td>
+    </tr>
+    <tr>
+        <td class="fixed-column">Shopping Products</td>
+        <td class="variable-column">
+            <ul>
+                {% for product in customer.products.all %}
+                    <li>{{ product.name }}</li>
+                {% endfor %}
+            </ul>
+        </td>
+
+    </tr>
+</table>
+
+
+
+{% endblock %}
